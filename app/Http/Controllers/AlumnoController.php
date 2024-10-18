@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use App\Models\Depto;
 use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
@@ -21,9 +22,10 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumno::paginate(5);
+        $alumnos = Alumno::with('carrera.depto')->paginate(5);
+        $deptos = Depto::get();
        // return view("alumnos/index", ['alumnos'=>$alumnos]);
-        return view("alumnos2/index", compact("alumnos"));
+        return view("alumnos2/index", compact("alumnos", "deptos"));
     }
 
     /**

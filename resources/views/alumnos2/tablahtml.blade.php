@@ -19,7 +19,10 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido Paterno</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Carrera</th>
+                    <th scope="col">Departamento</th>
                     <th scope="col" colspan="3" class="text-center"></th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +32,9 @@
                     <td>{{ $alumno->nombre}}</td>
                     <td>{{ $alumno->apellidop}}</td>
                     <td>{{ $alumno->email}}</td>
+                    <td>{{ $alumno->carrera->nombrecarrera}}</td>
+                    <td>{{ $alumno->carrera->depto->nombredepto}}</td>
+
                     <td><a href="{{route('alumnos.editar',  $alumno->id)}}" class="btn btn-outline-dark btn-sm">Editar</a></td>
                     <td><a href="{{route('alumnos.ver', $alumno->id)}}" class="btn btn-outline-dark btn-sm">Eliminar</a></td>
                     <td><a href="{{route('alumnos.ver', $alumno->id)}}" class="btn btn-outline-dark btn-sm">Ver</a></td>
@@ -39,3 +45,15 @@
 
         {{$alumnos->links()}}
     </div>
+
+    <hr>
+    <ul>
+        @foreach ($deptos as $depto)
+            <li>{{$depto->nombredepto}}</li>
+                <ul>
+                    @foreach ($depto->carreras as $carrera )
+                        <li>{{$carrera->nombrecarrera}}</li>
+                    @endforeach
+                </ul>
+        @endforeach
+    </ul>

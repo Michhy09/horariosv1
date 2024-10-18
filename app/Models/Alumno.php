@@ -12,7 +12,7 @@ class Alumno extends Model
     use HasFactory;
     protected $fillable =['nombre', 'apellidop', 'email'];
 
-    public function carreras():BelongsTo{
+    public function carrera():BelongsTo{
         return $this ->belongsTo(Carrera::class);
     }
 }
